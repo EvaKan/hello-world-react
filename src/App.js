@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import FirstClass from './New File';
 
 class App extends Component {
 
@@ -50,6 +51,8 @@ class App extends Component {
             })
           }
         </div>
+          <FirstClass></FirstClass>
+
         <div className="image-filters blocks-container">
           <button className="image-filter">
             <svg width="180px" height="180px" viewBox="0 0 180 180">
@@ -83,6 +86,7 @@ class App extends Component {
             </svg>
           </button>
         </div>
+      
       </div>
     );
   }

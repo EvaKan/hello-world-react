@@ -33,7 +33,12 @@ body {
   width: 100%;
   max-width: 576px;
 }
-
+.test {
+  text-align: left;
+  margin: 0 auto 20px auto;
+  width: 100%;
+  max-width: 576px;
+}
 .blocks-container {
   display: flex;
   flex-wrap: wrap;
