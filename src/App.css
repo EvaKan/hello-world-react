@@ -1,0 +1,126 @@
+@keyframes pulse {
+  0% {opacity: 0}
+  50% {opacity: 0.5}
+  100% {opacity: 0}
+}
+
+@keyframes fade-in {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes move-up-and-fade-in {
+  0% {
+    opacity: 0;
+    top: 20px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-callout: none;
+}
+
+.app {
+  text-align: center;
+  margin: 0 auto 20px auto;
+  width: 100%;
+  max-width: 576px;
+}
+
+.blocks-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.blocks-container > * {
+  display: block;
+  width: 180px;
+  height: 180px;
+  margin: 0 0 18px 0;
+  opacity: 0;
+  position: relative;
+  transition: transform 0.5s;
+}
+
+.blocks-container > *.selected {
+  transform: scale(1.15);
+  box-shadow: 0 0 100px rgba(90, 90, 90, 0.5);
+  z-index: 1;
+}
+
+.blocks-container img {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  object-fit: cover;
+}
+
+.blocks-container .image-filter {
+  background-color: #EEEEEE;
+}
+
+.blocks-container .image-filter {
+  position: relative;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  animation-name: move-up-and-fade-in;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.blocks-container > *:nth-child(n+1) {
+  animation-delay: 0s;
+}
+
+.blocks-container > *:nth-child(n+2) {
+  animation-delay: 0.1s;
+}
+
+.blocks-container > *:nth-child(n+3) {
+  animation-delay: 0.2s;
+}
+
+.blocks-container > *:nth-child(n+4) {
+  animation-delay: 0.3s;
+}
+
+.blocks-container > *:nth-child(n+5) {
+  animation-delay: 0.4s;
+}
+
+.blocks-container > *:nth-child(n+6) {
+  animation-delay: 0.5s;
+}
+
+@media screen and (max-width: 576px) {
+
+  body, html {
+    position: fixed;
+  }
+
+  h1 {
+    font-size: 16pt;
+  }
+
+  .blocks-container img,
+  .blocks-container .loading-block,
+  .blocks-container .image-filter {
+    width: 31vw;
+    height: 31vw;
+    margin-bottom: 3.5vw;
+  }
+
+}
