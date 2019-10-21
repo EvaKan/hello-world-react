@@ -32,17 +32,17 @@ class App extends Component {
                     <Link to="/home">Also Home</Link>
                   </li>
                   <li>
-                    <Link to="/detail?id=none">Detail</Link>
+                    <Link to="/detail?id=10&type=type1">Detail with type v1</Link>
                   </li>
                    <li>
-                    <Link to="/detail2/10">Detail2</Link>
+                    <Link to="/detail2/10/type1">Detail with type v2</Link>
                   </li>
                  </ul>
 
                 <Switch>
                    <Route path="/home"  component={HomeScreen}/ >
                    <Route path="/detail"  component={DetailsScreen}/ >
-                   <Route path="/detail2/:id"  component={DetailsScreen2}/ >
+                   <Route path="/detail2/:id/:type"  component={DetailsScreen2}/ >
                   <Route path="/"  component={HomeScreen}/ >
                </Switch>
       </div>
@@ -59,7 +59,7 @@ class HomeScreen extends React.Component {
     super();
   }
    navigate(){
-     this.props.history.push('./detail?id'+ this.id)
+     this.props.history.push('./detail?id = '+ this.id)
     }
   render() {
     return (
@@ -85,10 +85,12 @@ class DetailsScreen extends React.Component {
 
 class DetailsScreen2 extends React.Component {
   id = this.props.match.params.id
+  type = this.props.match.params.type
   render() {
       return (
      <div className="app">
         <h1>Id =  {this.id}</h1>
+        <h1>Type =  {this.type}</h1>
       </div>
     );
   }
