@@ -34,11 +34,15 @@ class App extends Component {
                   <li>
                     <Link to="/detail?id=none">Detail</Link>
                   </li>
+                   <li>
+                    <Link to="/detail2/10">Detail2</Link>
+                  </li>
                  </ul>
 
                 <Switch>
                    <Route path="/home"  component={HomeScreen}/ >
                    <Route path="/detail"  component={DetailsScreen}/ >
+                   <Route path="/detail2/:id"  component={DetailsScreen2}/ >
                   <Route path="/"  component={HomeScreen}/ >
                </Switch>
       </div>
@@ -55,7 +59,7 @@ class HomeScreen extends React.Component {
     super();
   }
    navigate(){
-     this.props.history.push('./detail?'+ this.id)
+     this.props.history.push('./detail?id'+ this.id)
     }
   render() {
     return (
@@ -69,11 +73,22 @@ class HomeScreen extends React.Component {
 }
 
 class DetailsScreen extends React.Component {
-  details = this.props.location.search
+  search = this.props.location.search 
   render() {
       return (
      <div className="app">
-        <h1>{this.details}</h1>
+        <h1>{this.search}</h1>
+      </div>
+    );
+  }
+}
+
+class DetailsScreen2 extends React.Component {
+  id = this.props.match.params.id
+  render() {
+      return (
+     <div className="app">
+        <h1>Id =  {this.id}</h1>
       </div>
     );
   }
