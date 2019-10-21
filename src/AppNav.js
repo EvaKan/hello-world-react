@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -24,7 +27,15 @@ class App extends Component {
          <h1>app</h1>
             <Router>
               <div>
-                <ul>
+              
+
+                <Switch>
+                   <Route path="/home"  component={HomeScreen}/ >
+                   <Route path="/detail"  component={DetailsScreen}/ >
+                   <Route path="/detail2/:id/:type"  component={DetailsScreen2}/ >
+                  <Route path="/"  component={HomeScreen}/ >
+               </Switch>
+                 <ul>
                   <li>
                     <Link to="/">Home</Link>
                   </li>
@@ -38,13 +49,19 @@ class App extends Component {
                     <Link to="/detail2/10/type1">Detail with type v2</Link>
                   </li>
                  </ul>
+                   <Tabs>
+    <TabList>
+      <Tab>Title 1</Tab>
+      <Tab>Title 2</Tab>
+    </TabList>
 
-                <Switch>
-                   <Route path="/home"  component={HomeScreen}/ >
-                   <Route path="/detail"  component={DetailsScreen}/ >
-                   <Route path="/detail2/:id/:type"  component={DetailsScreen2}/ >
-                  <Route path="/"  component={HomeScreen}/ >
-               </Switch>
+    <TabPanel>
+      <h2>Any content 1</h2>
+    </TabPanel>
+    <TabPanel>
+      <h2>Any content 2</h2>
+    </TabPanel>
+  </Tabs>
       </div>
    </Router>
       </div>
@@ -54,9 +71,27 @@ class App extends Component {
 export default App;
 
 class HomeScreen extends React.Component {
-  id = 10
+
  constructor() {
     super();
+  }
+  state = {
+    images: [
+      {id: '_C5zsV_p-YI'},
+       {id: '58WRkqcAn9o'},
+      {id: '9z-veIxii6k'},
+      {id: 'AwnggmGaFms'},
+      {id: 'Bi0atWiKP'},
+      {id: '3cNc1U7nJcs'}
+    ]
+  }
+
+  id = 10
+
+ toggleImageSelect = (id) => {
+    let imagesToUpdate = [...this.state.images];
+    let imageToUpdate = imagesToUpdate.find(image => image.id === id);
+    this.props.history.push('./detail2/'+ imageToUpdate.id + '/image')
   }
    navigate(){
      this.props.history.push('./detail?id = '+ this.id)
@@ -65,8 +100,16 @@ class HomeScreen extends React.Component {
     return (
      <div className="app">
         <h1>Home Screen</h1>
-          <button  onClick={ () => this.navigate() }>Go to detail id 10</button>
-        
+        <button  onClick={ () => this.navigate() }>Go to detail id 10</button>
+         <div className="sample-images blocks-container">
+          {
+            this.state.images.map(image => {
+              return <img
+                src={'https://source.unsplash.com/' + image.id + '/360x360'} 
+                onClick={() => this.toggleImageSelect(image.id)} />
+            })
+          }
+        </div>
       </div>
     );
   }
@@ -95,6 +138,5 @@ class DetailsScreen2 extends React.Component {
     );
   }
 }
-
 
 
