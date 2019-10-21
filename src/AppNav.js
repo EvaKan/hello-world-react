@@ -32,7 +32,7 @@ class App extends Component {
                     <Link to="/home">Also Home</Link>
                   </li>
                   <li>
-                    <Link to="/detail">Detail</Link>
+                    <Link to="/detail?id=none">Detail</Link>
                   </li>
                  </ul>
 
@@ -50,17 +50,18 @@ class App extends Component {
 export default App;
 
 class HomeScreen extends React.Component {
+  id = 10
  constructor() {
     super();
   }
    navigate(){
-     this.props.history.push('./detail')
+     this.props.history.push('./detail?'+ this.id)
     }
   render() {
     return (
      <div className="app">
         <h1>Home Screen</h1>
-          <button  onClick={ () => this.navigate() }>Go to detail</button>
+          <button  onClick={ () => this.navigate() }>Go to detail id 10</button>
         
       </div>
     );
@@ -68,11 +69,11 @@ class HomeScreen extends React.Component {
 }
 
 class DetailsScreen extends React.Component {
-  version = React.version
+  details = this.props.location.search
   render() {
       return (
      <div className="app">
-        <h1>{this.version}</h1>
+        <h1>{this.details}</h1>
       </div>
     );
   }
