@@ -157,8 +157,13 @@
 
 // https://github.com/chacestew/react-router-tabs
 
-import React from "react";
+import React, { Component } from 'react';
+import ReactDOM from "react-dom";
 import { RoutedTabs, NavTab } from "react-router-tabs";
+
+import './App.css';
+import './tab.css';
+
 import {
   BrowserRouter as Router,
   Redirect,
@@ -173,23 +178,26 @@ import {
 
 // with default styles:
 // import "styles/react-router-tabs.css";
-import './tab.css';
 
-class UsersPage extends React.Component {
+
+class App extends React.Component {
    render() {
     return (
         <div>
         <Router>
         <div>
          <Switch>
-            <Route path="/home"  component={HomeScreen}/ >
-            <Route path="/detail"  component={DetailsScreen}/ >
+            <Route path="/time"  component={TimeScreen}/ >
+            <Route path="/ordering"  component={OrderingScreen}/ >
+            <Route path="/detail/:id/:type"  component={DetailsScreen}/ >
+            <Route path="/ordered"  component={OrderedScreen}/ >
         </Switch>
         </div>
 
         <div className="nav-tabbar" >
-         <NavTab to="/home">Admins</NavTab>
-         <NavTab to="/detail">Moderators</NavTab>
+         <NavTab to="/time">Time Registration</NavTab>
+         <NavTab to="/ordering">Order Goods</NavTab>
+         <NavTab to="/ordered">Ordered</NavTab>
         </div>
 
      
@@ -200,9 +208,9 @@ class UsersPage extends React.Component {
     );
   }
 }
-export default UsersPage;
+export default App;
 
- class HomeScreen extends React.Component {
+ class OrderingScreen extends React.Component {
 
  constructor() {
     super();
@@ -223,10 +231,10 @@ export default UsersPage;
  toggleImageSelect = (id) => {
     let imagesToUpdate = [...this.state.images];
     let imageToUpdate = imagesToUpdate.find(image => image.id === id);
-    this.props.history.push('./detail2/'+ imageToUpdate.id + '/image')
+    this.props.history.push('./detail/'+ imageToUpdate.id + '/image')
   }
    navigate(){
-     this.props.history.push('./detail?id = '+ this.id)
+     this.props.history.push('./detail/ = '+ this.id +'/image')
     }
   render() {
     return (
@@ -248,11 +256,34 @@ export default UsersPage;
 }
 
 class DetailsScreen extends React.Component {
+  id = this.props.match.params.id
+  type = this.props.match.params.type
+  render() {
+      return (
+     <div className="app">
+        <h1>Id =  {this.id}</h1>
+        <h1>Type =  {this.type}</h1>
+      </div>
+    );
+  }
+}
+
+class TimeScreen extends React.Component {
   search = this.props.location.search 
   render() {
       return (
      <div className="app">
-        <h1>{this.search}</h1>
+        <h1>Time registration screen</h1>
+      </div>
+    );
+  }
+}
+class OrderedScreen extends React.Component {
+  search = this.props.location.search 
+  render() {
+      return (
+     <div className="app">
+        <h1>Time registration screen</h1>
       </div>
     );
   }
