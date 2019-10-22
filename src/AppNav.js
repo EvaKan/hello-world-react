@@ -261,8 +261,9 @@ class DetailsScreen extends React.Component {
   render() {
       return (
      <div className="app">
-        <h1>Id =  {this.id}</h1>
-        <h1>Type =  {this.type}</h1>
+        <h1>Detail screen</h1>
+        <h3>Id =  {this.id}</h3>
+        <h3>Type =  {this.type}</h3>
       </div>
     );
   }
@@ -283,7 +284,7 @@ class OrderedScreen extends React.Component {
   render() {
       return (
      <div className="app">
-        <h1>Time registration screen</h1>
+        <h1>Orderd screen</h1>
       </div>
     );
   }
